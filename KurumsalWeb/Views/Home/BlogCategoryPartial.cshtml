@@ -1,0 +1,15 @@
+﻿@model IEnumerable<KurumsalWeb.Models.Category>
+@{
+    Layout = null;
+}
+<div class="sidebar-item categories">
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li><a href="/Home/BlogCategoryPage/@item.CategoryId/">@item.Categoryname <span>(@item.Blog.Count())</span></a></li>
+
+        }
+
+    </ul>
+
+</div><!-- End sidebar categories-->

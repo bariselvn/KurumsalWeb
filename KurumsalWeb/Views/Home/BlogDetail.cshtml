@@ -1,0 +1,194 @@
+﻿@model KurumsalWeb.Models.Blog
+@{
+    ViewBag.Title = "BlogDetail";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<main id="main">
+
+    <!-- ======= Blog Section ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Blog</h2>
+
+                <ol>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li>Blog Detay</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Blog Section -->
+    <!-- ======= Blog Section ======= -->
+    <section class="blog" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-8 entries">
+                    <article class="entry">
+                        <div class="entry-img">
+                            <img src="@Model.PictureURL" alt="@Model.Title" class="img-fluid">
+                        </div>
+
+                        <h2 class="entry-title">
+                            <a>
+                                @Model.Title
+                            </a>
+                        </h2>
+
+                        <div class="entry-meta">
+                            <ul>
+                                <li class="d-flex align-items-center">
+                                    <i class="icofont-user"></i> <a href="blog-single.html">
+                                        John
+                                        Doe
+                                    </a>
+                                </li>
+                                <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
+                                <li class="d-flex align-items-center">
+                                    <i class="icofont-comment"></i> <a href="blog-single.html">
+                                        @Model.Category.Categoryname
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="entry-content">
+                            <p>
+                                @Html.Raw(Model.Contents)
+                            </p>
+
+                        </div>
+
+                    </article><!-- End blog entry -->
+                    <div class="blog-author clearfix">
+                        <img src="/Content/SiteLayout/assets/img/blog-author.jpg" class="rounded-circle float-left" alt="">
+                        <h4>Jane Smith</h4>
+                        <div class="social-links">
+                            <a href="https://twitters.com/"><i class="icofont-twitter"></i></a>
+                            <a href="https://facebook.com/"><i class="icofont-facebook"></i></a>
+                            <a href="https://instagram.com/"><i class="icofont-instagram"></i></a>
+                        </div>
+                        <p>
+                            Itaque quidem optio quia voluptatibus dolorem dolor. Modi eum sed possimus accusantium. Quas repellat
+                            voluptatem officia numquam sint aspernatur voluptas. Esse et accusantium ut unde voluptas.
+                        </p>
+                    </div><!-- End blog author bio -->
+                    <div class="blog-comments">
+                        <h4 class="comments-count"> Yorumlar</h4>
+                        @foreach (var item in Model.Comment.OrderByDescending(x=>x.CommentId).Where(x=>x.Status==true))
+                        {
+                            <div id="comment-3" class="comment clearfix">
+                                <img src="/Content/SiteLayout/assets/img/comments-5.jpg" class="comment-img  float-left" alt="">
+                                <h5><a href="">@item.Username</a> <a href="#" class="reply"><i class="icofont-reply"></i> Reply</a></h5>
+                                <time datetime="2020-01-01">01 Jan, 2020</time>
+                                <p>
+                                    @item.Contents
+                                </p>
+                            </div><!-- End comment #3 -->
+                        }
+                        <div class="reply-form">
+                            <h4>Yorum Yap</h4>
+                            <p>E-posta hesabınız yayımlanmayacak. Gerekli alanlar işaretlendi * </p>
+                            <form>
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <input name="name" id="name" type="text" class="form-control" placeholder="Kullanıcı Adınız*">
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <input name="email" id="email" type="email" class="form-control" placeholder="Mail Adresiniz*">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <textarea name="comment" id="content" class="form-control" placeholder="Yorumunuz*"></textarea>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="postcomment">  Yorum Gönder </button>
+                            </form>
+                        </div>
+
+                    </div><!-- End blog comments -->
+
+                </div><!-- End blog entries list -->
+
+                <div class="col-lg-4">
+                    <div class="sidebar">
+
+                        <h3 class="sidebar-title">Search</h3>
+                        <div class="sidebar-item search-form">
+                            <form action="">
+                                <input type="text">
+                                <button type="submit"><i class="icofont-search"></i></button>
+                            </form>
+                        </div><!-- End sidebar search formn-->
+
+                        <h3 class="sidebar-title">Kategoriler</h3>
+                        @{
+                            Html.RenderAction("BlogCategoryPartial", "Home");
+                        }
+
+                        <h3 class="sidebar-title">Son Blog Yazıları</h3>
+                        <div class="sidebar-item recent-posts">
+
+                            @{
+                                Html.RenderAction("BlogRecentPostPartial", "Home");
+                            }
+
+                        </div><!-- End sidebar recent posts-->
+
+                        <h3 class="sidebar-title">Tags</h3>
+                        <div class="sidebar-item tags">
+                            <ul>
+                                <li><a href="#">App</a></li>
+                                <li><a href="#">IT</a></li>
+                                <li><a href="#">Business</a></li>
+                                <li><a href="#">Business</a></li>
+                                <li><a href="#">Mac</a></li>
+                                <li><a href="#">Design</a></li>
+                                <li><a href="#">Office</a></li>
+                                <li><a href="#">Creative</a></li>
+                                <li><a href="#">Studio</a></li>
+                                <li><a href="#">Smart</a></li>
+                                <li><a href="#">Tips</a></li>
+                                <li><a href="#">Marketing</a></li>
+                            </ul>
+
+                        </div><!-- End sidebar tags-->
+
+                    </div><!-- End sidebar -->
+
+                </div><!-- End blog sidebar -->
+
+            </div><!-- End .row -->
+
+        </div><!-- End .container -->
+
+    </section><!-- End Blog Section -->
+
+</main><!-- End #main -->
+<script src="~/Scripts/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#postcomment").click(function(){
+            var username = $("#name").val();
+            var email = $("#email").val();
+            var content = $("#content").val();
+            $.ajax({
+                url: '/Home/PostComment/',
+                data: { name: username, email: email, content: content,blogid :@Model.BlogId },
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    alert("Yorumunuz eklendi, kontrol edildikten sonra yayınlanacaktır.");
+                }
+            })
+        })
+    })
+</script>

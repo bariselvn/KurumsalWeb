@@ -1,0 +1,13 @@
+﻿@model IEnumerable<KurumsalWeb.Models.Blog>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="post-item clearfix">
+        <img src="@item.PictureURL" alt="@item.Title">
+        <h4><a href="/Home/BlogDetail/@item.BlogId">@item.Title</a></h4>
+        <time datetime="2020-01-01">Jan 1, 2020</time>
+    </div>
+}

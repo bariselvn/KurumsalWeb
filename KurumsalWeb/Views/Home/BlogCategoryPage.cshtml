@@ -1,0 +1,134 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<KurumsalWeb.Models.Blog>
+@{
+    ViewBag.Title = "BlogCategoryPage";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<main id="main">
+
+    <!-- ======= Blog Section ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Blog</h2>
+
+                <ol>
+                    <li><a href="index.html">Home</a></li>
+                    <li>Blog</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Blog Section -->
+    <!-- ======= Blog Section ======= -->
+    <section class="blog" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-8 entries">
+                    @foreach (var item in Model)
+                    {
+                        <article class="entry">
+                            <div class="entry-img">
+                                <img src="@item.PictureURL" alt="@item.Title" class="img-fluid">
+                            </div>
+
+                            <h2 class="entry-title">
+                                <a href="/Home/BlogDetail/@item.BlogId">
+                                    @item.Title
+                                </a>
+                            </h2>
+
+                            <div class="entry-meta">
+                                <ul>
+                                    <li class="d-flex align-items-center">
+                                        <i class="icofont-user"></i> <a href="blog-single.html">
+                                            John
+                                            Doe
+                                        </a>
+                                    </li>
+                                    <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
+                                    <li class="d-flex align-items-center">
+                                        <i class="icofont-comment"></i> <a href="blog-single.html">
+                                            @item.Category.Categoryname
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="entry-content">
+                                <p>
+                                    @Html.Raw(item.Contents.Substring(0, 400)) ...
+                                </p>
+                                <div class="read-more">
+                                    <a href="/Home/BlogDetail/@item.BlogId">Read More</a>
+                                </div>
+                            </div>
+
+                        </article><!-- End blog entry -->
+                    }
+                    <div class="blog-pagination">
+                        @Html.PagedListPager(Model, Page => Url.Action("Blog", new { Page }), PagedListRenderOptions.Classic)
+                    </div>
+
+                </div><!-- End blog entries list -->
+
+                <div class="col-lg-4">
+                    <div class="sidebar">
+
+                        <h3 class="sidebar-title">Search</h3>
+                        <div class="sidebar-item search-form">
+                            <form action="">
+                                <input type="text">
+                                <button type="submit"><i class="icofont-search"></i></button>
+                            </form>
+                        </div><!-- End sidebar search formn-->
+
+                        <h3 class="sidebar-title">Kategoriler</h3>
+                        @{
+                            Html.RenderAction("BlogCategoryPartial", "Home");
+                        }
+
+                        <h3 class="sidebar-title">Son Blog Yazıları</h3>
+                        <div class="sidebar-item recent-posts">
+
+                            @{
+                                Html.RenderAction("BlogRecentPostPartial", "Home");
+                            }
+
+                        </div><!-- End sidebar recent posts-->
+
+                        @*<h3 class="sidebar-title">Tags</h3>
+                        <div class="sidebar-item tags">
+                            <ul>
+                                <li><a href="#">App</a></li>
+                                <li><a href="#">IT</a></li>
+                                <li><a href="#">Business</a></li>
+                                <li><a href="#">Business</a></li>
+                                <li><a href="#">Mac</a></li>
+                                <li><a href="#">Design</a></li>
+                                <li><a href="#">Office</a></li>
+                                <li><a href="#">Creative</a></li>
+                                <li><a href="#">Studio</a></li>
+                                <li><a href="#">Smart</a></li>
+                                <li><a href="#">Tips</a></li>
+                                <li><a href="#">Marketing</a></li>
+                            </ul>
+
+                        </div>*@<!-- End sidebar tags-->
+
+                    </div><!-- End sidebar -->
+
+                </div><!-- End blog sidebar -->
+
+            </div><!-- End .row -->
+
+        </div><!-- End .container -->
+
+    </section><!-- End Blog Section -->
+
+</main><!-- End #main -->

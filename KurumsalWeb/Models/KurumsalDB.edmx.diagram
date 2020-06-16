@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f281c5bf796647a48db67da5e37e40a0" Name="Diagram1">
+        <EntityTypeShape EntityType="KurumsalDBModel.AboutUs" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KurumsalDBModel.Admin" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KurumsalDBModel.Blog" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KurumsalDBModel.Category" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KurumsalDBModel.Contact" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KurumsalDBModel.Features" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KurumsalDBModel.Service" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KurumsalDBModel.sysdiagrams" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="KurumsalDBModel.FK_Blog_Category" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="KurumsalDBModel.Slider" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="KurumsalDBModel.Comment" Width="1.5" PointX="3.125" PointY="7.625" />
+        <AssociationConnector Association="KurumsalDBModel.FK_Comment_Blog" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

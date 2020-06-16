@@ -1,0 +1,36 @@
+﻿@model IEnumerable<KurumsalWeb.Models.Blog>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout .cshtml";
+}
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+
+                <th>Title</th>
+                <th>Category</th>
+                <th>Picture URL</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Category.Categoryname</td>
+                <td><img class="img-responsive" src="@item.PictureURL" width="200" height="200"></img></td>
+                
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BlogId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BlogId })
+                </td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+
